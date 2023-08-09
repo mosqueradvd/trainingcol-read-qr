@@ -74,12 +74,12 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    const userAuthToken = localStorage.getItem("userAuthToken");
-    if (userAuthToken) {
-      window.location.href = "/scan";
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userAuthToken = localStorage.getItem("userAuthToken");
+  //   if (userAuthToken) {
+  //     window.location.href = "/scan";
+  //   }
+  // }, []);
 
   return (
     <div>
