@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
-import styles from "../styles/Home.module.css";
 
 function Scan() {
   const [URL, setURL] = useState("No result");

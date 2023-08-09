@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { Spinner } from "../components/Spinner";
 
@@ -88,10 +89,12 @@ export default function Home() {
             href="/"
             className="flex items-center mb-10 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img
+            <Image
               className="w-8 h-8 mr-2"
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
               alt="Training Net Colombia"
+              width={4}
+              height={4}
             />
             Training Net Colombia
           </Link>
