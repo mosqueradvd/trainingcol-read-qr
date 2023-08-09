@@ -8,7 +8,6 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoguedIn, setIsLoguedIn] = useState(false);
 
   const firstTimeAccess = async (e) => {
     e.preventDefault();
@@ -157,7 +156,6 @@ export default function Home() {
                   {!isLoading ? "Iniciar sesión" : <Spinner />}
                 </button>
               </form>
-              {isLoguedIn && <h1>Ya tienes sesión iniciada</h1>}
             </div>
           </div>
         </div>
