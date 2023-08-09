@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Spinner } from "../components/Spinner";
 
 export default function Home() {
@@ -74,6 +74,13 @@ export default function Home() {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const userAuthToken = localStorage.getItem("userAuthToken");
+    if (userAuthToken) {
+      window.location.href = "/scan";
+    }
+  }, []);
+
   return (
     <div>
       <Head>
@@ -88,14 +95,18 @@ export default function Home() {
             href="/"
             className="flex items-center mb-10 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <Image
-              className="w-8 h-8 mr-2"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-              alt="Training Net Colombia"
-              width={4}
-              height={4}
-            />
-            Training Net Colombia
+            <div className="text-white flex mb-7">
+              <Image
+                className="w-8 h-8 mr-2"
+                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+                alt="Training Net Colombia"
+                width={30}
+                height={30}
+              />
+              <p className="ml-3 text-2xl font-semibold text-gray-900 dark:text-white">
+                Training Net Colombia
+              </p>
+            </div>
           </Link>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

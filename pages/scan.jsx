@@ -35,7 +35,7 @@ function Scan() {
     if (URL) {
       checkIn();
     }
-  }, [URL]);
+  }, [URL, checkIn]);
 
   return (
     <>
