@@ -74,12 +74,12 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  // useEffect(() => {
-  //   const userAuthToken = localStorage.getItem("userAuthToken");
-  //   if (userAuthToken) {
-  //     window.location.href = "/scan";
-  //   }
-  // }, []);
+  useEffect(() => {
+    const userAuthToken = localStorage.getItem("userAuthToken");
+    if (userAuthToken) {
+      window.location.href = "/scan";
+    }
+  }, []);
 
   return (
     <div>
@@ -89,7 +89,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <Link
             href="/"

@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
 module.exports = withPWA({
   reactStrictMode: true,
   images: {
-    domains: ["image-charts.com"],
+    domains: ["flowbite.s3.amazonaws.com"],
   },
 });
 
