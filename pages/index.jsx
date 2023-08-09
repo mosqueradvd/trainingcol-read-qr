@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import React, { useState } from "react";
 import { Spinner } from "../components/Spinner";
 
@@ -30,7 +31,6 @@ export default function Home() {
       const data = await response.text();
       const userAuthToken = localStorage.getItem("userAuthToken");
       if (userAuthToken) {
-        // setIsLoguedIn(true);
         alert("Ya cuenta con sesión iniciada.");
         window.location.href = "/scan";
       } else {
@@ -84,7 +84,7 @@ export default function Home() {
 
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
+          <Link
             href="/"
             className="flex items-center mb-10 text-2xl font-semibold text-gray-900 dark:text-white"
           >
@@ -94,7 +94,7 @@ export default function Home() {
               alt="Training Net Colombia"
             />
             Training Net Colombia
-          </a>
+          </Link>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
