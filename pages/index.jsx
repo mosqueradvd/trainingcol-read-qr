@@ -8,6 +8,7 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const firstTimeAccess = async (e) => {
     e.preventDefault();
@@ -28,14 +29,20 @@ export default function Home() {
           password,
         options
       );
-      const data = await response.text();
-      const userAuthToken = localStorage.getItem("userAuthToken");
-      if (userAuthToken) {
-        alert("Ya cuenta con sesión iniciada.");
-        window.location.href = "/scan";
+
+      const data = await response.json();
+
+      if (data.success) {
+        const userAuthToken = localStorage.getItem("userAuthToken");
+        if (userAuthToken) {
+          alert("Ya cuenta con sesión iniciada.");
+          window.location.href = "/scan";
+        } else {
+          localStorage.setItem("userAuthToken", data);
+          window.location.href = "/scan";
+        }
       } else {
-        localStorage.setItem("userAuthToken", data);
-        window.location.href = "/scan";
+        setErrorMessage(data?.message);
       }
     } catch (err) {
       console.error(err);
@@ -160,6 +167,11 @@ export default function Home() {
                     ¿Olvidaste la contraseña?
                   </a>
                 </div>
+                {errorMessage && (
+                  <div className="text-red-500 mb-4 text-center">
+                    {errorMessage}
+                  </div>
+                )}
                 <button
                   type="submit"
                   className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center"

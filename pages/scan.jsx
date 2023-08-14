@@ -25,7 +25,7 @@ function Scan() {
         if (response.success) {
           alert("Hora de llegada, registrada!");
         } else {
-          alert("Paila, intenta de nuevo");
+          alert("Algo falló");
         }
       })
       .catch((err) => console.error(err));
