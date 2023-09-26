@@ -38,7 +38,7 @@ export default function Home() {
           alert("Ya cuenta con sesión iniciada.");
           window.location.href = "/scan";
         } else {
-          localStorage.setItem("userAuthToken", data);
+          localStorage.setItem("userAuthToken", data.token);
           window.location.href = "/scan";
         }
       } else {
@@ -81,6 +81,8 @@ export default function Home() {
     setIsLoading(false);
   };
 
+  
+ 
   useEffect(() => {
     const userAuthToken = localStorage.getItem("userAuthToken");
     if (userAuthToken) {

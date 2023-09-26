@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
+import Swal from "sweetalert2";
 
 function Scan() {
   const [URL, setURL] = useState("No result");
   const [userAuthToken, setUserAuthToken] = useState("");
+  const rebootSystem = () => {
+    if (typeof (Storage) !== "undefined") {
+      localStorage.removeItem("userAuthToken");
+      setTimeout(() => {
+        window.location.href = '/'
+      }, 500);
+      console.log("✅");
+    } else {
+      console.log("❌");
+    }
 
+  }
   useEffect(() => {
     const t = localStorage.getItem("userAuthToken");
     setUserAuthToken(t);
@@ -15,7 +27,7 @@ function Scan() {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
-        token: userAuthToken,
+        token: userAuthToken.toString(),
       }),
     };
 
@@ -23,9 +35,12 @@ function Scan() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          alert("Hora de llegada, registrada!");
+          // alert("Hora de llegada, registrada!");
+          Swal.fire("¡Registrado!", "", "success");
         } else {
-          alert("Algo falló");
+          Swal.fire("Uy, algo falló", "", "error");
+          // alert("Algo falló" + JSON.stringify(response));
+          console.error("Error", response);
         }
       })
       .catch((err) => console.error(err));
@@ -67,6 +82,13 @@ function Scan() {
                 ></path>
               </svg>{" "}
               <span className="text-sm">QR Code</span>
+              <button
+                type="submit"
+                className="z-50 w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center"
+                onClick={rebootSystem}
+              >
+                Reiniciar
+              </button>
             </div>
           </div>
           <div className="text-center">
@@ -75,6 +97,7 @@ function Scan() {
                 <QrReader
                   onResult={(result, error) => {
                     if (!!result) {
+                      console.log("🚀 ~ file: scan.jsx:100 ~ Scan ~ result:", result)
                       setURL(result?.text);
                     }
 
@@ -100,6 +123,7 @@ function Scan() {
             </div>
             <p className="text-gray-300 text-xs mt-3">Escanea el código QR</p>
           </div>
+
         </div>
       </div>
     </>
