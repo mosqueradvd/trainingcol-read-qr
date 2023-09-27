@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
 import Swal from "sweetalert2";
+import Image from "next/image";
 
 function Scan() {
   const [URL, setURL] = useState("No result");
@@ -70,39 +71,25 @@ function Scan() {
     <>
       <div
         className="min-w-screen  fixed  left-0 top-0  flex justify-center items-center inset-0 z-50 bg-green-100 overflow-y-scroll bg-cover"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1628254747021-59531f59504b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2134&amp;q=80)",
-        }}
       >
         <div className="absolute bg-gradient-to-tl from-indigo-600  to-green-600 opacity-80 inset-0 "></div>
         <div className="relative border-8 overflow-hidden border-gray-900 bg-gray-900 h-full w-full flex flex-col w-64  flex justify-center items-center bg-no-repeat bg-cover shadow-2xl">
           <div className="absolute bg-black opacity-60 inset-0 "></div>
           <div className="camera absolute top-4"></div>
-          <div className="flex w-full flex-row justify-between items-center mb-2 px-2 text-gray-50 z-10 absolute top-7">
-            <div className="flex flex-row items-center ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 p-2 cursor-pointer hover:bg-gray-500 text-gray-50 rounded-full mr-3"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                ></path>
-              </svg>{" "}
-              <span className="text-sm">QR Code</span>
-              <button
-                type="submit"
-                className="z-50 w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center"
-                onClick={rebootSystem}
-              >
-                Reiniciar
-              </button>
+          <div className="flex w-full flex-row justify-center items-center mb-2 px-2 text-gray-50 z-10 absolute top-7">
+            <div className="flex flex-col items-center">
+              <div className="mt-10 text-white flex mb-7 items-center">
+                <Image
+                  className="w-8 h-8 mr-2"
+                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+                  alt="Training Net Colombia"
+                  width={30}
+                  height={30}
+                />
+                <p className="ml-3 text-2xl font-semibold text-gray-900 dark:text-white">
+                  Training Net Colombia
+                </p>
+              </div>
             </div>
           </div>
           <div className="text-center">
@@ -133,6 +120,13 @@ function Scan() {
                   }}
                 />
               </div>
+              <button
+                type="submit"
+                className="mt-20 z-50 w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center"
+                onClick={rebootSystem}
+              >
+                Reiniciar
+              </button>
               <span className="border_bottom"></span>
             </div>
             <p className="text-gray-300 text-xs mt-3">Escanea el código QR</p>
