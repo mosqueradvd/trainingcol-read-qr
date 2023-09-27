@@ -35,11 +35,25 @@ function Scan() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          // alert("Hora de llegada, registrada!");
-          Swal.fire("¡Registrado!", "", "success");
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '¡Entrada registrada!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+
+          setTimeout(() => {
+            window.location.reload()
+          }, 1500);
         } else {
-          Swal.fire("Uy, algo falló", "", "error");
-          // alert("Algo falló" + JSON.stringify(response));
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: '¡Salida registrada!',
+            showConfirmButton: false,
+            timer: 1500
+          })
           console.error("Error", response);
         }
       })
